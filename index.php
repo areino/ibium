@@ -4,7 +4,7 @@ declare(strict_types=1);
 // ──────────────────────────────────────────────────────────────────────────────
 // Bootstrap
 // ──────────────────────────────────────────────────────────────────────────────
-define('ROOT',       dirname(__DIR__));
+define('ROOT',       __DIR__);
 define('DATA_DIR',   ROOT . '/data');
 define('UPLOADS_DIR', ROOT . '/uploads');
 
@@ -20,8 +20,8 @@ defined('SMTP_PASS')      or define('SMTP_PASS',      '');
 if (file_exists(ROOT . '/config.local.php'))       require ROOT . '/config.local.php';
 if (file_exists(ROOT . '/vendor/autoload.php'))    require ROOT . '/vendor/autoload.php';
 
-require ROOT . '/src/JsonStore.php';
-require ROOT . '/src/Auth.php';
+require ROOT . '/JsonStore.php';
+require ROOT . '/Auth.php';
 
 JsonStore::init(DATA_DIR);
 session_start();
@@ -42,7 +42,7 @@ function render(string $template, array $vars = []): never
     $vars = array_merge(['user' => $user ?? [], 'myBands' => $myBands ?? []], $vars);
     extract($vars);
     $content_template = $template;
-    require ROOT . '/templates/layout.php';
+    require ROOT . '/layout.php';
     exit;
 }
 
@@ -109,7 +109,7 @@ $myBands = [];
 if ($method === 'GET' && $path === '/login') {
     $sent  = isset($_GET['sent']);
     $error = $_GET['error'] ?? null;
-    require ROOT . '/templates/login.php';
+    require ROOT . '/login.php';
     exit;
 }
 

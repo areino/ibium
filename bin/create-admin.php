@@ -12,7 +12,7 @@ if (php_sapi_name() !== 'cli') {
 define('ROOT',     dirname(__DIR__));
 define('DATA_DIR', ROOT . '/data');
 
-require ROOT . '/src/JsonStore.php';
+require ROOT . '/JsonStore.php';
 
 JsonStore::init(DATA_DIR);
 

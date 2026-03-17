@@ -33,7 +33,7 @@
     <?php
     $user     = $user ?? [];
     $myBands  = $myBands ?? [];
-    require ROOT . '/templates/nav.php';
+    require ROOT . '/nav.php';
     ?>
 </div>
 
@@ -46,7 +46,7 @@
 
     <!-- Main content -->
     <div class="main-content">
-        <?php require ROOT . '/templates/' . $content_template . '.php'; ?>
+        <?php require ROOT . '/' . $content_template . '.php'; ?>
     </div>
 </div>
 

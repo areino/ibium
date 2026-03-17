@@ -1,0 +1,46 @@
+Options -Indexes
+Options -MultiViews
+
+# Security headers
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# Block direct access to data/ and uploads/ directories
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # Block data/ and uploads/ directories
+    RewriteRule ^(data|uploads)(/|$) - [F,L]
+
+    # Skip real files and directories (except the above)
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    RewriteRule ^ index.php [QSA,L]
+</IfModule>
+
+# Block direct HTTP access to all PHP files except index.php
+<FilesMatch "\.php$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+<Files "index.php">
+    Order allow,deny
+    Allow from all
+</Files>
+
+# Block JSON, log, and backup files
+<FilesMatch "\.(json|log|php~|bak|swp)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Allow static assets
+<FilesMatch "\.(css|js|png|jpg|jpeg|gif|ico|woff|woff2|ttf|svg)$">
+    Order allow,deny
+    Allow from all
+</FilesMatch>
