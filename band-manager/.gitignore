@@ -1,0 +1,10 @@
+/vendor/
+composer.lock
+config.local.php
+/data/*.json
+/uploads/*
+!/uploads/.gitkeep
+.DS_Store
+*.swp
+*.swo
+Thumbs.db

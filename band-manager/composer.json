@@ -1,0 +1,12 @@
+{
+    "name": "yourname/band-manager",
+    "description": "Self-hosted PHP web app for managing music bands",
+    "type": "project",
+    "require": {
+        "php": ">=8.1",
+        "phpmailer/phpmailer": "^6.9"
+    },
+    "config": {
+        "optimize-autoloader": true
+    }
+}
